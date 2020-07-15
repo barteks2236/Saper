@@ -10,15 +10,17 @@ import javax.swing.JPanel;
 
 public class GamePanel extends JPanel {
 
+	int nr = 1; //nr przycisku w celu indentyfikacji
+	
 	public GamePanel() {
 
-		setLayout(new GridLayout(2,6));
+		setLayout(new GridLayout(4,4));
 
 		JButton bombButton = new JButton();
 		bombButton.setBounds(100, 100, 50, 50);
-		for (int i=0 ; i<2 ; i++) {
-			for (int j=0 ; j<2 ; j++) {
-				add(new JButton(""+ (j+1)));
+		for (int i=1 ; i<=4 ; i++) {					//pion
+			for (int j=1 ; j<=4 ; j++) {				//poziom
+				add(new JButton(""+ (nr++)));		//nr przycisku w celach testowych
 			}
 		}
 		setVisible(true);
@@ -37,6 +39,6 @@ public class GamePanel extends JPanel {
 
 //  Override
 	public Dimension getPreferredSize() {
-		return new Dimension(800, 800);
+		return new Dimension(600, 600);
 	}
 }
