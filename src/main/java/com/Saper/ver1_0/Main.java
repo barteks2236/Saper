@@ -15,14 +15,14 @@ public class Main {
 
 		
 		JFrame gameArea = new JFrame("Saper/Mines");
-		GamePanel gamePanel = new GamePanel();
+		//GamePanel gamePanel = new GamePanel();
 		
 		
-		gameArea.add(gamePanel);
+		//gameArea.add(gamePanel);
 		gameArea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameArea.setVisible(true);
 		gameArea.pack();
-		gamePanel.addMouseListener((MouseListener) GameMouse);
+		//gamePanel.addMouseListener((MouseListener) GameMouse);
 
 
 	}

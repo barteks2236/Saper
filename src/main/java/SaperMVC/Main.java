@@ -4,7 +4,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 
-import com.Saper.ver1_0.GamePanel;
 
 public class Main {
 

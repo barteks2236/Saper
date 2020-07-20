@@ -1,7 +1,5 @@
 package SaperMVC;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SaperController {
 
@@ -13,9 +11,6 @@ public class SaperController {
 		this.view = view;
 	}
 	
-	public void bombButtonsAction() {
-		view.bombButton.addActionListener();
-	}
 	
 	
 	
