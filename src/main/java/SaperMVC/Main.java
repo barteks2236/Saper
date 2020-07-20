@@ -1,12 +1,16 @@
 package SaperMVC;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
+import javax.swing.text.View;
 
-import com.Saper.ver1_0.GamePanel;
 
-public class Main {
+
+public class Main implements MouseListener{
 
 	public static void main(String[] args) {
 		
@@ -17,8 +21,37 @@ public class Main {
 		gameArea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameArea.setVisible(true);
 		gameArea.pack();
+		gameArea.add(SaperView.kontenerBomb,BorderLayout.CENTER);   
+	                         //calling function to start the game by filling mines.
 
+	    gameArea.setLocationRelativeTo(null);      
+	    gameArea.setVisible(true);
 
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
