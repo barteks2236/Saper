@@ -11,8 +11,18 @@ public class SaperController {
 		this.view = view;
 	}
 	
+
 	
-	
+//	private ActionListener hideButton(int y, int x) {
+//		view.bombButton[x][y].addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent e) {
+//				System.out.println("Klika sobie: " + e.getActionCommand());
+//				System.out.println(e.getID());
+//				view.buttonsList.get(Integer.parseInt(e.getActionCommand()) - 1).setVisible(false);
+//			}
+//		});
+//		return null;
+//	}
 	
 	
 	
