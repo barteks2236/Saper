@@ -21,8 +21,8 @@ public class Main implements MouseListener{
 		gameArea.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gameArea.setVisible(true);
 		gameArea.pack();
-		gameArea.add(SaperView.kontenerBomb,BorderLayout.CENTER);   
-	                         //calling function to start the game by filling mines.
+  
+
 
 	    gameArea.setLocationRelativeTo(null);      
 	    gameArea.setVisible(true);

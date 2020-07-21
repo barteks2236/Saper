@@ -3,6 +3,7 @@ package com.SaperMVC.ver2;
 import java.awt.BorderLayout;
 import java.awt.Container;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -26,9 +27,12 @@ public class Main {
 //	    gameArea.setVisible(true);
 
         WidokSaper.saperRamka.setSize(900,900);                       
+        WidokSaper.saperRamka.setResizable(false);
+        
+//		WidokSaper.setIconImage(bomb.getImage("C:\\Users\\Bartosz\\Desktop\\bomb.jpg"));
         WidokSaper.saperRamka.setLayout(new BorderLayout());           
         WidokSaper.saperRamka.add(WidokSaper.guziki,BorderLayout.SOUTH);     
-
+        
 		
 		
 		
@@ -38,7 +42,7 @@ public class Main {
 		
 		
 		
-		new WidokSaper(20);
+		new WidokSaper(5);
 	}
 
 }

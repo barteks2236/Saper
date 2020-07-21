@@ -22,6 +22,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import com.SaperMVC.ver2.WidokSaper;
+
 public class SaperView extends JPanel implements ActionListener, MouseListener{
 	String buttonID;
 	List<JButton> buttonsList = new ArrayList<JButton>();
@@ -37,45 +39,55 @@ public class SaperView extends JPanel implements ActionListener, MouseListener{
 	
 	public SaperView() {
 
-		//setLayout(new GridLayout(4, 4));
-		guziczki = new JButton[4][4];
-		kontenerBomb.setLayout(new GridLayout(4,4));    
+		setLayout(new GridLayout(4, 4));
+//		guziczki = new JButton[4][4];
+//      kontenerBomb.setLayout(new GridLayout(4,4));    
 
-	     for(int x = 0; x < guziczki.length; x++){
-	         for(int y = 0; y < guziczki[0].length; y++){
-	             guziczki[x][y] = new JButton();            
-	             guziczki[x][y].addActionListener(this);     
-	             kontenerBomb.add(guziczki[x][y]);                  
-	         }
-	     }
+//	     for(int x = 0; x < guziczki.length; x++){
+//	         for(int y = 0; y < guziczki[0].length; y++){
+//	             guziczki[x][y] = new JButton();            
+//	             guziczki[x][y].addActionListener(this);     
+////	             kontenerBomb.add(guziczki[x][y]);  
+//	             
+//	         }
+//	     }
 
 
 	     
 	     
-//		for (int x = 0; x < 4; x++) { 			// pion
-//			for (int y = 0; y < 4; y++) { 		// poziom
-//				
+		for (int x = 1; x <= 4; x++) { 			// pion
+			for (int y = 1; y <= 4; y++) { 		// poziom
+				
 //				buttonsList.add(bombButton[x][y]);
-//
-//				bombButton[x][y] = new JButton("" + (nr++));
-//				add(bombButton[x][y]); // nr przycisku w celach testowych
-//				
-//				
-//				
+
+				bombButton[x][y] = new JButton("" + (nr+=1));
+				add(bombButton[x][y]);
+				buttonsList.add(bombButton[x][y]);
+				bombButton[x][y].addActionListener(hideButton(x, y));
+				
+
+				
+				
+				
+				
+				
+				
+				
+
 //				bombButton[x][y].addMouseListener(mouseButton(x, y));
 ////				if (SwingUtilities.isLeftMouseButton(
-//				bombButton[x][y].addActionListener(hideButton(x, y));
+				
 //
 //				
 //
 //				
 //				
 //				//				if (SwingUtilities.isLeftMouseButton(addMouseListener(this))) {
-////				System.out.println("dupa");
+
 ////				}
 //				//}
-//			}
-//		}
+			}
+		}
 		
 	
 
@@ -91,12 +103,13 @@ public class SaperView extends JPanel implements ActionListener, MouseListener{
 //	private ActionListener hideButton(int x, int y) {
 //		
 //		bombButton[x][y].addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent e) {
+//			public void actionPerformed(ActionEvent akcjaWysadzamy) {
 //				
-//				System.out.println("Klika sobie: " + e.getActionCommand());
-//
+//				System.out.println("Klawisz: " + akcjaWysadzamy.getActionCommand());
 //				System.out.println(nr2);
-////				buttonsList.get(Integer.parseInt(e.getActionCommand()) - 1)
+//				buttonsList.get(Integer.parseInt(akcjaWysadzamy.getActionCommand())-1).setVisible(false); 
+////				buttonsList.get(Integer.parseInt(akcjaWysadzamy.getActionCommand())-1).setText(Integer.parseInt(akcjaWysadzamy.getActionCommand())-1 + "");
+//////				buttonsList.get(Integer.parseInt(e.getActionCommand()) - 1)
 //				
 //				
 //				
@@ -114,10 +127,10 @@ public class SaperView extends JPanel implements ActionListener, MouseListener{
 ////				buttonsList.get(Integer.parseInt(e.getActionCommand()) - 1).setVisible(false); 
 //
 ////				}
-//			}
-//		});
-//		return null;
-//	}
+			}
+		});
+		return null;
+	}
 	
 //	private MouseListener mouseButton(int x, int y) {
 //		
@@ -162,8 +175,8 @@ public class SaperView extends JPanel implements ActionListener, MouseListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-
-		
+		buttonsList.get(Integer.parseInt(e.getActionCommand()) - 1).setVisible(false); 
+	}
 		
 		
 	public void mouseClicked(MouseEvent a) {
