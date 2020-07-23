@@ -4,7 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import com.SaperController.Controller;
-import SaperMVC.Main;
+import com.SaperModel.GameArea;
+
+import SaperMVC.MainMVC;
+import com.Saper.ver3.*;
 
 public class StartPanel extends JPanel{
 	
@@ -36,6 +39,8 @@ public class StartPanel extends JPanel{
 		start.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				new Thread(new Main()).start();
+				MainMVC.gameArea.dispose();
 				if(OptionsPanel.switchOff2.isSelected()) {
 					Controller.explode.stop();
 				}else {
@@ -51,7 +56,7 @@ public class StartPanel extends JPanel{
 		options.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Main.switchPanels(Main.startPanel, Main.optionsPanel);
+				MainMVC.switchPanels(MainMVC.startPanel, MainMVC.optionsPanel);
 				if(OptionsPanel.switchOff2.isSelected()) {
 					Controller.explode.stop();
 				}else {

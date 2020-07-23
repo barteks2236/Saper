@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import com.SaperController.Controller;
 
-import SaperMVC.Main;
+import SaperMVC.MainMVC;
 
 
 public class OptionsPanel extends JPanel {
@@ -52,7 +52,7 @@ public class OptionsPanel extends JPanel {
 		back.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Main.switchPanels(Main.optionsPanel, Main.startPanel);
+				MainMVC.switchPanels(MainMVC.optionsPanel, MainMVC.startPanel);
 				if(switchOff2.isSelected()) {
 					Controller.explode.stop();
 				}else {

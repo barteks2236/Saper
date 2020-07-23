@@ -7,7 +7,7 @@ import com.SaperController.Controller;
 import com.SaperView.OptionsPanel;
 import com.SaperView.StartPanel;
 
-public class Main {
+public class MainMVC {
 	
 	public static JFrame gameArea = new JFrame("SAPER the game of the year edition");
 	public static StartPanel startPanel = new StartPanel();
