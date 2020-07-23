@@ -29,8 +29,9 @@ public class Main {
 		gameArea.pack();
 		gameArea.setLocationRelativeTo(null);
 		Controller.music(Controller.pathBombSiren);
+	        
+
 		gameArea.addWindowListener(new WindowAdapter() {
-		
 			public void windowOpened(WindowEvent event) {
 				Controller.bomb.setMicrosecondPosition(0);
 				Controller.bombTimePosition = 0;
