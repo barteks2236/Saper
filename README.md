@@ -1,6 +1,6 @@
 ![Logo](./src/main/resources/sign.gif)	# Saper - the game
 
-###Saper, prosta gra stworzona w java
+### Saper, prosta gra stworzona w java
 
 * [Ogólne informacje](#Ogólne_informacje)
 * [Technologia](#technologia)
