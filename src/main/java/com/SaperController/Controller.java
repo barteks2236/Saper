@@ -29,7 +29,7 @@ public class Controller {
 	
 	public static Clip bomb;
 	public static long bombTimePosition;
-	public static String pathBombSiren = "D:\\Eclipse Workspace\\Saper\\src\\main\\resources\\BombSiren.wav";
+	public static String pathBombSiren = "D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\resources\\BombSiren.wav";
 	public static void music(String path) {
 		try {
 			AudioInputStream ais = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());
@@ -43,7 +43,7 @@ public class Controller {
 	}
 	
 	public static Clip explode;
-	public static String pathExplodeSound = "D:\\Eclipse Workspace\\Saper\\src\\main\\resources\\ExplodeSound.wav";
+	public static String pathExplodeSound = "D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\resources\\ExplodeSound.wav";
 	public static void effects(String path) {
 		try {
 			AudioInputStream ais2 = AudioSystem.getAudioInputStream(new File(path).getAbsoluteFile());

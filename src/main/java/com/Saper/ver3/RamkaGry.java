@@ -27,7 +27,6 @@ public class RamkaGry extends JFrame {
 	int s = 1; // nasza odleglosc miedzy kwadratami
 	static int rozmiarX=10;
 	static int rozmiarY=9;
-	
 	public int mojX; 												 // wspolrzedna x-owa kursora myszy
 	public int mojY; 												 // wspolrzedna y-owa kursora myszy
 	static int[][] bomby = new int[rozmiarX][rozmiarY]; 			 // nasza tablica podlozonych ladunkow
@@ -41,7 +40,6 @@ public class RamkaGry extends JFrame {
 	public int ustawionyCzas = 30; 									 // czas na rozbrojenie ³adunkow w sekundach
 	public int flagaX=0, flagaY=0;
 	public boolean oflagowany = false;
-	
 	static Random r = new Random();
 	int miejscaPodlozenia = r.nextInt(5);
 	static int b = 0;
@@ -287,7 +285,7 @@ public class RamkaGry extends JFrame {
 			if (SwingUtilities.isLeftMouseButton(e)) {
 
 			
-//				if (sprawdzaczX() != -1 && sprawdzaczY() != -1) {		//sprawdzamy czy kursor jest w obszarze przycisku
+//				if (sprawdzaczX() != -1 && sprawdzaczY() != -1) {		// sprawdzacz sprawdza czy kursor jest w obszarze przycisku
 //					rozbrojone[sprawdzaczX()][sprawdzaczY()] = true;
 //				}
 
