@@ -1,4 +1,4 @@
-# Saper - the game
+# Saper - the game											![Logo](./src/main/resources/sign.gif)
 Saper, prosta gra stworzona w java
 
 * [Ogólne informacje](#Ogólne_informacje)
@@ -16,4 +16,4 @@ Projekt jest stowrzony przy użyciu:
 ## Setup
 W celu uruchomienia projektu należy zmienić ściężkę dostępu do plików w katalogu src/main/resources na swoją ścieżkę.
 
-![Logo](./src/main/resources/sign.gif)
+
