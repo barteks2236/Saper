@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -22,12 +23,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
+import com.SaperModel.DaneGracza;
+import com.SaperModel.DaneGracza.OknoPodajImie;
+
+import SaperMVC.MainMVC;
+
 public class RamkaGry extends JFrame {
 
 	int s = 1; // nasza odleglosc miedzy kwadratami
 	static int rozmiarX=10;
 	static int rozmiarY=9;
-	
 	public int mojX; 												 // wspolrzedna x-owa kursora myszy
 	public int mojY; 												 // wspolrzedna y-owa kursora myszy
 	static int[][] bomby = new int[rozmiarX][rozmiarY]; 			 // nasza tablica podlozonych ladunkow
@@ -36,19 +41,20 @@ public class RamkaGry extends JFrame {
 	static boolean[][] oznaczone = new boolean[rozmiarX][rozmiarY];  // tablica oznaczonych ladunkow
 	public int zegarX = 720; 										 // wspolrzedna x-owa zegara
 	public int zegarY = 820; 										 // wspolrzedna y-owa zegara
-	public long sekunda = 0; 										 // zmienna czasowa
+	public static long sekunda = 0; 										 // zmienna czasowa
 	public static boolean statusGry = false;						 // mowi czy gra jest resetowana czy nie
-	public int ustawionyCzas = 30; 									 // czas na rozbrojenie ³adunkow w sekundach
+	public int ustawionyCzas = 450; 									 // czas na rozbrojenie ³adunkow w sekundach
 	public int flagaX=0, flagaY=0;
 	public boolean oflagowany = false;
-	
 	static Random r = new Random();
 	int miejscaPodlozenia = r.nextInt(5);
 	static int b = 0;
 	static Date clock = new Date();
 	public static boolean wygrana = false;
 	public static boolean przegrana = false;
-
+	ArrayList<Integer> czyscikLista = new ArrayList();
+	static int iloscFlag = 0;
+	
 	public RamkaGry() {
 
 		this.setSize(908, 930);
@@ -67,10 +73,11 @@ public class RamkaGry extends JFrame {
 
 		for (int x = 0; x < rozmiarX; x++) {
 			for (int y = 0; y < rozmiarY; y++) {
-				if (r.nextInt(100) < 20) {
+				if (r.nextInt(100) < 20) {			// % planszy na jakiej pojawi¹ siê ³adunki
 					bomby[x][y] = 1;
 
-				} else {
+				} 
+				else {
 					bomby[x][y] = 0;
 				}
 				rozbrojone[x][y] = false;
@@ -79,13 +86,19 @@ public class RamkaGry extends JFrame {
 
 		rozgrywka();
 	}
-	
 
 // metoda uruchomienia rozgrywki
 	
 	static void rozgrywka() {
+		
+		for (int x = 0; x < rozmiarX; x++) {			// Zeruje flagi przy kazdej grze
+			for (int y = 0; y < rozmiarY; y++) {
+				oznaczone[x][y] = false;
+			}
+		}	
 		for (int x = 0; x < rozmiarX; x++) {
 			for (int y = 0; y < rozmiarY; y++) {
+				
 				if (r.nextInt(100) < 20) {
 					bomby[x][y] = 1;
 
@@ -131,9 +144,6 @@ public class RamkaGry extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					przegrana = true;
 					statusGry = true;
-					JOptionPane.showMessageDialog(null, "Jesteœ w kawa³kach! :( ", "Podda³eœ siê!", 
-							JOptionPane.INFORMATION_MESSAGE);
-					
 					statusGry = false;
 				}
 
@@ -149,8 +159,16 @@ public class RamkaGry extends JFrame {
 					wygrana = false;
 					clock = new Date();
 					oflagowany=false;
+//					for (int x = 0; x < rozmiarX; x++) {
+//						for (int y = 0; y < rozmiarY; y++) {
+//							oznaczone[x][y] = false;
+//						}
+//					}
 					rozgrywka();
-
+					
+					
+					
+					
 				}
 
 			});
@@ -161,30 +179,33 @@ public class RamkaGry extends JFrame {
 			g.setColor(Color.yellow);
 			g.fillRect(0, 0, getWidth(), getHeight());
 
+			
+			
 			for (int x = 0; x < rozmiarX; x++) {
 				for (int y = 0; y < rozmiarY; y++) {
 					g.setColor(Color.gray);
-//					if (bomby[x][y] == 1) {
-//						g.setColor(Color.yellow);		//Podœwietlenie bomb na ¿ó³to
-//					}
+					if (bomby[x][y] == 1) {
+						g.setColor(Color.yellow);		//Podœwietlenie bomb na ¿ó³to
+					}
+//					else
+//						g.setColor(Color.GREEN);
+					
 					if (rozbrojone[x][y] == true) {
 						g.setColor(Color.WHITE);
 						if (bomby[x][y] == 1) {
 							g.setColor(Color.red);
-						}
+						}		
 					}
-
 					if (mojX >= s + x * 90 && mojX < x * 90 + 90 - s && mojY >= s + y * 90 && mojY < y * 90 + 90 - s) {
 						g.setColor(Color.lightGray);
 					}
 
 					g.fillRect(s + x * 90, s + y * 90, 90 - 2 * s, 90 - 2 * s);
 					
-					
 					if (rozbrojone[x][y] == true) {
 						g.setColor(Color.black);
 
-						if (bomby[x][y] == 0 && wPoblizu[x][y] != 0) {
+						if (bomby[x][y] == 0) {
 
 							g.setFont(new Font("Arial", Font.BOLD, 35));
 							g.drawString(Integer.toString(wPoblizu[x][y]), x * 90 + 36, y * 90 + 57);
@@ -200,14 +221,15 @@ public class RamkaGry extends JFrame {
 					}
 					
 					// dodanie flagi
+					
 					if (oznaczone[x][y]==true) {
-						g.setColor(Color.orange);
-						g.fillRect(x * 90+35, y * 90+15, 15, 60); // Kijek
+						g.setColor(Color.DARK_GRAY);
+						g.fillRect(x * 90+50, y * 90+15, 10, 60); // Kijek
 						g.setColor(Color.red);
-						g.fillRect(x * 90+5, y * 90+15, 30, 25); // Flaga
-						
-						
-						
+						g.fillRect(x * 90+20, y * 90+15, 30, 25); // Flaga
+						g.fillRect(x * 90+10, y * 90+15, 35, 10);
+						g.setColor(Color.BLACK);
+						g.fillRect(x * 90+25, y * 90+70, 55, 5);
 						
 						
 //						Image img;
@@ -219,7 +241,7 @@ public class RamkaGry extends JFrame {
 	//					Toolkit.getDefaultToolkit().getImage
 						
 					}
-					
+					podpowiedzi(x, y, g);					
 				}
 			}
 
@@ -272,6 +294,7 @@ public class RamkaGry extends JFrame {
 		}
 	}
 
+
 	public class Klikacz implements MouseListener {
 
 		
@@ -280,7 +303,7 @@ public class RamkaGry extends JFrame {
 			if (SwingUtilities.isLeftMouseButton(e)) {
 
 			
-//				if (sprawdzaczX() != -1 && sprawdzaczY() != -1) {		//sprawdzamy czy kursor jest w obszarze przycisku
+//				if (sprawdzaczX() != -1 && sprawdzaczY() != -1) {		// sprawdzacz sprawdza czy kursor jest w obszarze przycisku
 //					rozbrojone[sprawdzaczX()][sprawdzaczY()] = true;
 //				}
 
@@ -291,9 +314,11 @@ public class RamkaGry extends JFrame {
 
 						if (oznaczone[sprawdzaczX()][sprawdzaczY()] == false) {
 							oznaczone[sprawdzaczX()][sprawdzaczY()] = true;
+							iloscFlag++;
 						}
 						else {
 							oznaczone[sprawdzaczX()][sprawdzaczY()] = false;
+							iloscFlag--;
 						}
 					}
 					else {
@@ -301,9 +326,8 @@ public class RamkaGry extends JFrame {
 					}
 					
 				} 
-				else {
-					
-					System.out.println("Myszka nie jest nigdzie");
+				else {					
+					System.out.println("Nale¿y klikaæ na miejsca do tego przeznaczone");
 				}
 			}
 			if (SwingUtilities.isRightMouseButton(e)) {
@@ -323,19 +347,14 @@ public class RamkaGry extends JFrame {
 	
 		public void mouseEntered(MouseEvent e) {
 		}
-
-		
 		public void mouseExited(MouseEvent e) {
 		}
-
-		
 		public void mousePressed(MouseEvent e) {
 		}
-
-		
 		public void mouseReleased(MouseEvent e) {
 		}
 	}
+	
 		public int sprawdzaczX() {
 			for (int x = 0; x < rozmiarX; x++) {
 				for (int y = 0; y < rozmiarY; y++) {
@@ -374,19 +393,20 @@ public class RamkaGry extends JFrame {
 				for (int y = 0; y < rozmiarY; y++) {
 					if (rozbrojone[x][y] == true && bomby[x][y] == 1) {
 						przegrana = true;
-//						JOptionPane.showMessageDialog(null, "Jesteœ w kawa³kach! :( ", "Podda³eœ siê!", 
-//								JOptionPane.INFORMATION_MESSAGE);
-						
-						
 					}
 				}
 				
 				
-			}if (iloscOdkrytych() >= 90 - pozostaleBomby()) { //10*9
+			}
+//			if (iloscOdkrytych() >= 90 - pozostaleBomby()) { // wielkosc 10*9, do uzaleznienia od jednej zmiennej w pozniej i Gramy aby odslonic wszystkie NIEZAMINOWANE pola
+			if (iloscFlag == pozostaleBomby()) {	// Gramy poki nie OFLAGUJEMY wszystkich Bomb
 				wygrana = true;
-				
-//				JOptionPane.showMessageDialog(null, "WYGRANA!", 
-//						"PRZE¯Y£EŒ TYM RAZEM!", JOptionPane.INFORMATION_MESSAGE);		// Trzeba zrobiæ wyjscie do menu po roozgrywce
+				OknoPodajImie.wynik = (int)RamkaGry.sekunda;				
+				JOptionPane.showMessageDialog(null, "WYGRANA!", 
+						"PRZE¯Y£EŒ TYM RAZEM!", JOptionPane.INFORMATION_MESSAGE);		// Trzeba zrobiæ wyjscie do menu po roozgrywce
+				Main.saper.setVisible(false);
+				MainMVC.gameArea.setVisible(false);
+				MainMVC.daneGracza.setVisible(true);
 			}
 		}
 		
@@ -412,5 +432,51 @@ public class RamkaGry extends JFrame {
 				}
 			}
 			return suma;
-		}		
+		}
+		
+		public void czcionkaPodpowiedzi(int x, int y, Graphics g) {
+			g.setColor(Color.GREEN);
+			g.setFont(new Font("Arial", Font.BOLD, 35));
+			g.drawString(Integer.toString(wPoblizu[x][y]), x * 90 + 36, y * 90 + 57);
+		}
+		
+		public void podpowiedzi(int x, int y, Graphics g) {
+			if (bomby[x][y] == 0) {
+							
+				if (x > 0 && y > 0 && rozbrojone[x - 1][y - 1] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}
+				if (y > 0 && rozbrojone[x][y-1] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}
+				if (y < rozmiarY - 1 && rozbrojone[x][y+1] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}
+				if (x < rozmiarX - 1 && y > 0 && rozbrojone[x+1][y-1] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}
+				if (x > 0 && rozbrojone[x-1][y] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}						
+				if (x < rozmiarX - 1 && rozbrojone[x+1][y] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}
+				if (x > 0 && y < rozmiarY -1 && rozbrojone[x-1][y+1] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}	
+				if (x < rozmiarX - 1 && y < rozmiarY - 1 && rozbrojone[x+1][y+1] == true) {
+					czcionkaPodpowiedzi(x,y,g);
+				}						
+			}
+		}	
+		
+//		public void uwaga() {
+//	 		
+//			JFrame uwaga = new JFrame();
+//	 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//	 		this.setVisible(true);
+//	 		this.setSize(200, 200);
+//	 		this.add(uwaga);
+//	 	}
 }
+
