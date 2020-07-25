@@ -2,7 +2,9 @@
 
 # Saper - the game
 
-### Saper, prosta gra stworzona w java
+### Bartosz Kozak & Sara Winiarek
+
+####
 
 * [Ogólne informacje](#Ogólne_informacje)
 * [Technologia](#technologia)
@@ -19,4 +21,4 @@ Projekt jest stowrzony przy użyciu:
 ## Setup
 W celu uruchomienia projektu należy zmienić ściężkę dostępu do plików w katalogu src/main/resources na swoją ścieżkę.
 
-
+![Logo](./src/main/resources/saperGracz.jpg)	
