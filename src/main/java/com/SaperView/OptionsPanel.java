@@ -1,25 +1,16 @@
 package com.SaperView;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
+import java.awt.event.*;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
-
-import com.SaperController.Controller;
-
-import SaperMVC.MainMVC;
-
+import com.SaperController.*;
 
 public class OptionsPanel extends JPanel {
 	
 	public static JRadioButton switchOn2;
 	public static JRadioButton switchOff2;
-	
-	
+		
 	public OptionsPanel() {
 		
 		setLayout(null);
@@ -42,22 +33,18 @@ public class OptionsPanel extends JPanel {
 		title.setForeground(new Color(226, 226, 0));
 		add(title);
 		
-
-		JButton back = new JButton("Menu");
-		back.setBounds(480, 440, 100, 40);
-		back.setFont(new Font("Verdana", Font.BOLD | Font.ITALIC,20));
-		back.setBackground(new Color(226, 226, 0));
-		back.setBorderPainted(false);
+		JButton back = new JButton();
+		Controller.backButton(back, 480, 440);
 		add(back);
 		back.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				MainMVC.switchPanels(MainMVC.optionsPanel, MainMVC.startPanel);
+				Controller.switchPanels(Controller.optionsPanel, Controller.startPanel);
 				if(switchOff2.isSelected()) {
-					Controller.explode.stop();
+					MusicController.explode.stop();
 				}else {
-					Controller.effects(Controller.pathExplodeSound);
-					Controller.explode.start();
+					MusicController.effects(MusicController.pathExplodeSound);
+					MusicController.explode.start();
 				}
 			}
 		});
@@ -74,8 +61,8 @@ public class OptionsPanel extends JPanel {
 		switchOn.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Controller.bomb.start();
-				Controller.bomb.loop(Clip.LOOP_CONTINUOUSLY);
+				MusicController.bomb.start();
+				MusicController.bomb.loop(Clip.LOOP_CONTINUOUSLY);
 			}
 		});
 		
@@ -85,7 +72,7 @@ public class OptionsPanel extends JPanel {
 		switchOff.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				Controller.bomb.stop();	
+				MusicController.bomb.stop();	
 			}
 		});
 		

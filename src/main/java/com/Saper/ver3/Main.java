@@ -1,7 +1,6 @@
 package com.Saper.ver3;
 
 import java.util.Date;
-
 import javax.swing.JOptionPane;
 
 public class Main implements Runnable {
@@ -9,6 +8,7 @@ public class Main implements Runnable {
 	RamkaGry saper = new RamkaGry();
 
 	public static void main(String[] args) {
+		
 
 		new Thread(new Main()).start();
 		
@@ -44,6 +44,4 @@ public class Main implements Runnable {
 		}
 
 	}
-
-	
 }

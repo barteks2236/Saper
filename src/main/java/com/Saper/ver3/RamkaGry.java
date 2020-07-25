@@ -272,13 +272,6 @@ public class RamkaGry extends JFrame {
 		}
 	}
 
-	public class Przyciskacz implements ActionListener {
-
-	
-		public void actionPerformed(ActionEvent e) {
-		}
-	}
-
 	public class Klikacz implements MouseListener {
 
 		
@@ -419,8 +412,5 @@ public class RamkaGry extends JFrame {
 				}
 			}
 			return suma;
-		}
-		
-
-		
+		}		
 }

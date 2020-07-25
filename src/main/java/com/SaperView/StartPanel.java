@@ -3,11 +3,7 @@ package com.SaperView;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import com.SaperController.Controller;
-import com.SaperModel.GameArea;
-
-import SaperMVC.MainMVC;
-import com.Saper.ver3.*;
+import com.SaperController.*;
 
 public class StartPanel extends JPanel{
 	
@@ -39,13 +35,12 @@ public class StartPanel extends JPanel{
 		start.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				new Thread(new Main()).start();
-				MainMVC.gameArea.dispose();
+				Controller.switchPanels(Controller.startPanel, Controller.levelPanel);
 				if(OptionsPanel.switchOff2.isSelected()) {
-					Controller.explode.stop();
+					MusicController.explode.stop();
 				}else {
-					Controller.effects(Controller.pathExplodeSound);
-					Controller.explode.start();
+					MusicController.effects(MusicController.pathExplodeSound);
+					MusicController.explode.start();
 				}	
 			}
 		});
@@ -56,19 +51,17 @@ public class StartPanel extends JPanel{
 		options.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				MainMVC.switchPanels(MainMVC.startPanel, MainMVC.optionsPanel);
+				Controller.switchPanels(Controller.startPanel, Controller.optionsPanel);
 				if(OptionsPanel.switchOff2.isSelected()) {
-					Controller.explode.stop();
+					MusicController.explode.stop();
 				}else {
-					Controller.effects(Controller.pathExplodeSound);
-					Controller.explode.start();
+					MusicController.effects(MusicController.pathExplodeSound);
+					MusicController.explode.start();
 				}	
 			}
-		});
-		
+		});	
 	}
 	
-
 	@Override
 	public Dimension getPreferredSize() {
 		return new Dimension(600, 500);
