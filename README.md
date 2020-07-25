@@ -1,4 +1,5 @@
-![Logo](./src/main/resources/sign.gif)	# Saper - the game
+![Logo]								(./src/main/resources/sign.gif)	
+# Saper - the game
 
 ### Saper, prosta gra stworzona w java
 
