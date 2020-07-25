@@ -21,4 +21,4 @@ Projekt jest stowrzony przy użyciu:
 ## Setup
 W celu uruchomienia projektu należy zmienić ściężkę dostępu do plików w katalogu src/main/resources na swoją ścieżkę.
 
-![Gracz](./src/main/resources/saperGracz.jpg)	
+![Gracz](./src/main/resources/saperGracz.jpg) 	
