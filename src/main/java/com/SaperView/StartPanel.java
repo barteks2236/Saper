@@ -39,6 +39,8 @@ public class StartPanel extends JPanel{
 		start.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
+				 
+				Main.saper.setVisible(true);
 				new Thread(new Main()).start();
 				MainMVC.gameArea.dispose();
 				if(OptionsPanel.switchOff2.isSelected()) {

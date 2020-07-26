@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.Saper.ver3.*;
+import com.SaperView.StartPanel;
 
 import SaperMVC.MainMVC;
 
@@ -57,6 +58,7 @@ public class DaneGracza extends JFrame{
 					MainMVC.daneGracza.setVisible(false);
 					
 					MainMVC.gameArea.setVisible(true);
+			//		MainMVC.gameArea.add(MainMVC.startPanel);
 					System.out.println(MainMVC.ranking);	// Podglad rankingu w tablicy
 					
 					

@@ -41,9 +41,9 @@ public class RamkaGry extends JFrame {
 	static boolean[][] oznaczone = new boolean[rozmiarX][rozmiarY];  // tablica oznaczonych ladunkow
 	public int zegarX = 720; 										 // wspolrzedna x-owa zegara
 	public int zegarY = 820; 										 // wspolrzedna y-owa zegara
-	public static long sekunda = 0; 										 // zmienna czasowa
+	public static long sekunda = 0; 								 // zmienna czasowa
 	public static boolean statusGry = false;						 // mowi czy gra jest resetowana czy nie
-	public int ustawionyCzas = 450; 									 // czas na rozbrojenie ³adunkow w sekundach
+	public int ustawionyCzas = 450; 								 // czas na rozbrojenie ³adunkow w sekundach
 	public int flagaX=0, flagaY=0;
 	public boolean oflagowany = false;
 	static Random r = new Random();
@@ -401,10 +401,11 @@ public class RamkaGry extends JFrame {
 			}
 //			if (iloscOdkrytych() >= 90 - pozostaleBomby()) { // wielkosc 10*9, do uzaleznienia od jednej zmiennej w pozniej i Gramy aby odslonic wszystkie NIEZAMINOWANE pola
 			if (iloscFlag == pozostaleBomby()) {	// Gramy poki nie OFLAGUJEMY wszystkich Bomb
+								
 				wygrana = true;
 				OknoPodajImie.wynik = (int)RamkaGry.sekunda;				
 				JOptionPane.showMessageDialog(null, "WYGRANA!", 
-						"PRZE¯Y£EŒ TYM RAZEM!", JOptionPane.INFORMATION_MESSAGE);		// Trzeba zrobiæ wyjscie do menu po roozgrywce
+						"PRZE¯Y£EŒ TYM RAZEM!", JOptionPane.INFORMATION_MESSAGE);	
 				Main.saper.setVisible(false);
 				MainMVC.gameArea.setVisible(false);
 				MainMVC.daneGracza.setVisible(true);
