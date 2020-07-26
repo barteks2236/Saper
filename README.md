@@ -10,6 +10,7 @@
 * [Technologia](#technologia)
 * [Sterowanie](#sterowanie)
 * [Ustawienia](#ustawienia)
+* [Fabuła](#fabuła)
 
 ## Ogólne informacje
 Ten projekt jest prostą grą, której celem jest oznaczenie (oflagowanie) wszystkich ładunków wybuchowych umieszczonych pod ziemią. Ranking jest oceniany na bazie czasu, im szybciej saper oznaczy podłożone ładunki, tym wyższe miejsce zamie w rankingu, należy jednak uważać i być szybkim gdyż terroryści ustawili zegar odliczający do detonacji.
