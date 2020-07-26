@@ -15,7 +15,7 @@ Ten projekt jest prostą grą, której celem jest oznaczenie (oflagowanie) wszys
 	
 ## Technologia
 Projekt jest stowrzony przy użyciu:
-* java version: 1.8.0_251
+* java version: 1.8.0_251 
 
 	
 ## Setup
