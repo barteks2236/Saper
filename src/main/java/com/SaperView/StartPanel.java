@@ -36,9 +36,9 @@ public class StartPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				Controller.switchPanels(Controller.startPanel, Controller.levelPanel);
-				if(OptionsPanel.switchOff2.isSelected()) {
+				if(OptionsPanel.switchOff2.isSelected())
 					MusicController.explode.stop();
-				}else {
+				else {
 					MusicController.effects(MusicController.pathExplodeSound);
 					MusicController.explode.start();
 				}	
@@ -52,9 +52,9 @@ public class StartPanel extends JPanel{
 			
 			public void actionPerformed(ActionEvent e) {
 				Controller.switchPanels(Controller.startPanel, Controller.optionsPanel);
-				if(OptionsPanel.switchOff2.isSelected()) {
+				if(OptionsPanel.switchOff2.isSelected())
 					MusicController.explode.stop();
-				}else {
+				else {
 					MusicController.effects(MusicController.pathExplodeSound);
 					MusicController.explode.start();
 				}	

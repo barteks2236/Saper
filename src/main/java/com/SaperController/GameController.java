@@ -1,17 +1,18 @@
 package com.SaperController;
 
+import java.awt.*;
 import java.awt.event.*;
-import java.util.Date;
-import java.util.Random;
+import java.util.*;
 import javax.swing.*;
-
-import com.Saper.ver3.RamkaGry;
+import com.SaperView.*;
 
 public class GameController {
 	
-	private static int rozmiarX = 10;
-	private static int rozmiarY = 10;
+	private static int rozmiarX = 15;
+	private static int rozmiarY = 15;
 	public static int mojX, mojY;
+	private static int sizeSquare = 90;
+	
 	public static int[][] bomby = new int[getRozmiarX()][getRozmiarY()];
 	public static int[][] wPoblizu = new int[getRozmiarX()][getRozmiarY()];
 	public static boolean[][] rozbrojone = new boolean[getRozmiarX()][getRozmiarY()];
@@ -23,6 +24,9 @@ public class GameController {
 	public static boolean przegrana = false;
 	public static boolean statusGry = false;
 	public static Date clock = new Date();
+	public static long sekunda = 0;
+	private static int iloscFlag = 0;
+	public static int wynik;
 	
 	public static int getRozmiarX() {
 		return rozmiarX;
@@ -39,9 +43,17 @@ public class GameController {
 	public static void setRozmiarY(int rozmiarY) {
 		GameController.rozmiarY = rozmiarY;
 	}
-		
 	
-	public void ramkaGry(JFrame frame, JPanel panel) {
+	public static int getSizeSquare() {
+		return sizeSquare;
+	}
+
+	public static void setSizeSquare(int sizeSquare) {
+		GameController.sizeSquare = sizeSquare;
+	}
+	
+	
+	public static void ramkaGry(JFrame frame, JPanel panel) {
 		frame.addMouseMotionListener(new MouseAdapter() {
 			public void mouseMoved(MouseEvent e) {
 				mojX = e.getX();
@@ -53,24 +65,40 @@ public class GameController {
 			public void mouseClicked(MouseEvent e) {
 				if (SwingUtilities.isLeftMouseButton(e)) {
 					if (sprawdzaczX() != -1 && sprawdzaczY() != -1) {
-						System.out.println("Myszka jest w " + sprawdzaczX() + " ; " + sprawdzaczY() + " w poblizu: "
-								+ wPoblizu[sprawdzaczX()][sprawdzaczY()]);
+//						System.out.println("Myszka jest w " + sprawdzaczX() + " ; " + sprawdzaczY() + " w poblizu: "
+//								+ wPoblizu[sprawdzaczX()][sprawdzaczY()]);
 						if (oflagowany == true && rozbrojone[sprawdzaczX()][sprawdzaczY()]==false) {
 
-							if (oznaczone[sprawdzaczX()][sprawdzaczY()] == false) 
+							if (oznaczone[sprawdzaczX()][sprawdzaczY()] == false) {
 								oznaczone[sprawdzaczX()][sprawdzaczY()] = true;
-							else 
+								iloscFlag++;
+							}else {
 								oznaczone[sprawdzaczX()][sprawdzaczY()] = false;
-						} else
+								iloscFlag--;
+							}		
+						}else
 							rozbrojone[sprawdzaczX()][sprawdzaczY()] = true;	
 					} 
 				}
 				
 				if (SwingUtilities.isRightMouseButton(e)) {
-					if (oflagowany == false)
-							oflagowany = true;
-					else
+					if (oflagowany == false) {
+						oflagowany = true;
+						GamePanelEasy.flagMode.setText("FLAG MODE ON");
+						GamePanelEasy.flagMode.setBackground(Color.GREEN);
+						GamePanelMedium.flagMode.setText("FLAG MODE ON");
+						GamePanelMedium.flagMode.setBackground(Color.GREEN);
+						GamePanelHard.flagMode.setText("FLAG MODE ON");
+						GamePanelHard.flagMode.setBackground(Color.GREEN);
+					}else {
 						oflagowany =  false;
+						GamePanelEasy.flagMode.setText("FLAG MODE OFF");
+						GamePanelEasy.flagMode.setBackground(Color.RED);
+						GamePanelMedium.flagMode.setText("FLAG MODE OFF");
+						GamePanelMedium.flagMode.setBackground(Color.RED);
+						GamePanelHard.flagMode.setText("FLAG MODE OFF");
+						GamePanelHard.flagMode.setBackground(Color.RED);
+					}	
 				}
 			}	
 		});
@@ -92,7 +120,7 @@ public class GameController {
 	public static int sprawdzaczX() {
 		for (int x = 0; x < getRozmiarX(); x++) {
 			for (int y = 0; y < getRozmiarY(); y++) {
-				if (mojX >= s + x * 90 && mojX < x * 90 + 90 - s && mojY >= s + y * 90 && mojY < y * 90 + 90 - s)
+				if (mojX >= s + x * getSizeSquare() && mojX < x * getSizeSquare() + getSizeSquare() - s && mojY >= s + y * getSizeSquare() && mojY < y * getSizeSquare() + getSizeSquare() - s)
 					return (x);
 			}
 		}
@@ -102,7 +130,7 @@ public class GameController {
 	public static int sprawdzaczY() {
 		for (int x = 0; x < getRozmiarX(); x++) {
 			for (int y = 0; y < getRozmiarY(); y++) {
-				if (mojX >= s + x * 90 && mojX < x * 90 + 90 - s && mojY >= s + y * 90 && mojY < y * 90 + 90 - s)
+				if (mojX >= s + x * getSizeSquare() && mojX < x * getSizeSquare() + getSizeSquare() - s && mojY >= s + y * getSizeSquare() && mojY < y * getSizeSquare() + getSizeSquare() - s)
 					return (y);
 			}
 		}
@@ -113,6 +141,12 @@ public class GameController {
 	public static void rozgrywka() {
 		int b = 0;
 		
+		for (int x = 0; x < getRozmiarX(); x++) {			// Zeruje flagi przy kazdej grze
+			for (int y = 0; y < getRozmiarY(); y++) {
+				oznaczone[x][y] = false;
+			}
+		}	
+
 		for (int x = 0; x < getRozmiarX(); x++) {
 			for (int y = 0; y < getRozmiarY(); y++) {
 				if (r.nextInt(100) < 20)
@@ -146,5 +180,67 @@ public class GameController {
 			return true;
 		
 		return false;
+	}
+	
+	public static void wygrana() {
+		for (int x = 0; x < getRozmiarX(); x++) {
+			for (int y = 0; y < getRozmiarY(); y++) {
+				if (rozbrojone[x][y] == true && bomby[x][y] == 1)
+					przegrana = true;
+			}	
+		}
+
+		if (iloscFlag == pozostaleBomby()  && sekunda > 0) {	// Gramy poki nie OFLAGUJEMY wszystkich Bomb
+			wygrana = true;
+			wynik = (int) sekunda;
+		}
+	}
+	
+	private static int pozostaleBomby() {
+		int suma = 0;
+		for (int x = 0; x < getRozmiarX(); x++) {
+			for (int y = 0; y < getRozmiarY(); y++) {
+				if (bomby[x][y] == 1) {
+					suma++;
+				}
+			}
+		}
+		return suma;
+	}
+	
+	public static void podpowiedzi(int x, int y, Graphics g) {
+		if (bomby[x][y] == 0) {
+						
+			if (x > 0 && y > 0 && rozbrojone[x - 1][y - 1] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}
+			if (y > 0 && rozbrojone[x][y-1] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}
+			if (y < rozmiarY - 1 && rozbrojone[x][y+1] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}
+			if (x < rozmiarX - 1 && y > 0 && rozbrojone[x+1][y-1] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}
+			if (x > 0 && rozbrojone[x-1][y] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}						
+			if (x < rozmiarX - 1 && rozbrojone[x+1][y] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}
+			if (x > 0 && y < rozmiarY -1 && rozbrojone[x-1][y+1] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}	
+			if (x < rozmiarX - 1 && y < rozmiarY - 1 && rozbrojone[x+1][y+1] == true) {
+				czcionkaPodpowiedzi(x,y,g);
+			}						
+		}
+	}
+	
+	private static void czcionkaPodpowiedzi(int x, int y, Graphics g) {
+		g.setColor(Color.YELLOW);
+		g.setFont(new Font("Arial", Font.BOLD, 35));
+		g.drawString(Integer.toString(wPoblizu[x][y]), x * getSizeSquare() + 36, y * getSizeSquare() + 57);
 	}
 }

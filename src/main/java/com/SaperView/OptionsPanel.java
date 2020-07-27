@@ -8,6 +8,8 @@ import com.SaperController.*;
 
 public class OptionsPanel extends JPanel {
 	
+	public static JRadioButton switchOn;
+	public static JRadioButton switchOff;
 	public static JRadioButton switchOn2;
 	public static JRadioButton switchOff2;
 		
@@ -40,9 +42,9 @@ public class OptionsPanel extends JPanel {
 			
 			public void actionPerformed(ActionEvent e) {
 				Controller.switchPanels(Controller.optionsPanel, Controller.startPanel);
-				if(switchOff2.isSelected()) {
+				if(switchOff2.isSelected())
 					MusicController.explode.stop();
-				}else {
+				else {
 					MusicController.effects(MusicController.pathExplodeSound);
 					MusicController.explode.start();
 				}
@@ -55,7 +57,7 @@ public class OptionsPanel extends JPanel {
 		soundEffects.setForeground(new Color(226, 226, 0));
 		add(soundEffects);
 		
-		final JRadioButton switchOn = new JRadioButton("W³¹cz");
+		switchOn = new JRadioButton("W³¹cz");
 		Controller.radioButton(switchOn, 210, 225);
 		add(switchOn);
 		switchOn.addActionListener(new ActionListener() {
@@ -66,13 +68,13 @@ public class OptionsPanel extends JPanel {
 			}
 		});
 		
-		final JRadioButton switchOff = new JRadioButton("Wy³¹cz");
+		switchOff = new JRadioButton("Wy³¹cz");
 		Controller.radioButton(switchOff, 310, 225);
 		add(switchOff);
 		switchOff.addActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				MusicController.bomb.stop();	
+				MusicController.bomb.stop();
 			}
 		});
 		
