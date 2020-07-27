@@ -1,5 +1,4 @@
 package SaperMVC;
-import com.SaperModel.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
@@ -7,7 +6,6 @@ import javax.swing.*;
 
 import com.SaperController.Controller;
 import com.SaperModel.DaneGracza;
-import com.SaperModel.DaneGracza.OknoPodajImie;
 import com.SaperView.OptionsPanel;
 import com.SaperView.StartPanel;
 

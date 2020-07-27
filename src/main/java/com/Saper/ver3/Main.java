@@ -21,7 +21,9 @@ public class Main implements Runnable {
 
 	public void run() {
 		while (true) {
-			saper.repaint();
+
+			saper.repaint(RamkaGry.sekunda);
+			
 			if (RamkaGry.statusGry == false) {
 				RamkaGry.wygrana();
 				
@@ -38,8 +40,8 @@ public class Main implements Runnable {
 				RamkaGry.rozgrywka();
 			}
 			if (RamkaGry.wygrana == false && RamkaGry.przegrana == true) {
-				JOptionPane.showMessageDialog(null, "Jesteœ w kawa³kach! :( ", "Podda³eœ siê!",
-						JOptionPane.INFORMATION_MESSAGE);
+//	-->		JOptionPane.showMessageDialog(null, "Jesteœ w kawa³kach! :( ", "Podda³eœ siê!",
+//					JOptionPane.INFORMATION_MESSAGE);
 				RamkaGry.przegrana = false;
 				RamkaGry.wygrana = false;
 				RamkaGry.clock = new Date();

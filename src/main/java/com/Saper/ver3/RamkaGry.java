@@ -30,20 +30,20 @@ import SaperMVC.MainMVC;
 
 public class RamkaGry extends JFrame {
 
-	int s = 1; // nasza odleglosc miedzy kwadratami
+	int s = 1; 															// nasza odleglosc miedzy kwadratami
 	static int rozmiarX=10;
 	static int rozmiarY=9;
-	public int mojX; 												 // wspolrzedna x-owa kursora myszy
-	public int mojY; 												 // wspolrzedna y-owa kursora myszy
-	static int[][] bomby = new int[rozmiarX][rozmiarY]; 			 // nasza tablica podlozonych ladunkow
-	static int[][] wPoblizu = new int[rozmiarX][rozmiarY]; 			 //ilosc bomb w poblizu pola
-	static boolean[][] rozbrojone = new boolean[rozmiarX][rozmiarY]; // tablica odkrytych pól, nazwa do zmiany potem
-	static boolean[][] oznaczone = new boolean[rozmiarX][rozmiarY];  // tablica oznaczonych ladunkow
-	public int zegarX = 720; 										 // wspolrzedna x-owa zegara
-	public int zegarY = 820; 										 // wspolrzedna y-owa zegara
-	public static long sekunda = 0; 								 // zmienna czasowa
-	public static boolean statusGry = false;						 // mowi czy gra jest resetowana czy nie
-	public int ustawionyCzas = 450; 								 // czas na rozbrojenie ³adunkow w sekundach
+	public int mojX; 													// wspolrzedna x-owa kursora myszy
+	public int mojY; 													// wspolrzedna y-owa kursora myszy
+	static int[][] bomby = new int[rozmiarX][rozmiarY]; 				// nasza tablica podlozonych ladunkow
+	static int[][] wPoblizu = new int[rozmiarX][rozmiarY]; 				//ilosc bomb w poblizu pola
+	static boolean[][] rozbrojone = new boolean[rozmiarX][rozmiarY];	// tablica odkrytych pól, nazwa do zmiany potem
+	static boolean[][] oznaczone = new boolean[rozmiarX][rozmiarY];		// tablica oznaczonych ladunkow
+	public int zegarX = 720; 											// wspolrzedna x-owa zegara
+	public int zegarY = 820; 											// wspolrzedna y-owa zegara
+	public static long sekunda = 0; 									// zmienna czasowa
+	public static boolean statusGry = false;							// mowi czy gra jest resetowana czy nie
+	public int ustawionyCzas = 10; 									// czas na rozbrojenie ³adunkow w sekundach
 	public int flagaX=0, flagaY=0;
 	public boolean oflagowany = false;
 	static Random r = new Random();
@@ -184,9 +184,9 @@ public class RamkaGry extends JFrame {
 			for (int x = 0; x < rozmiarX; x++) {
 				for (int y = 0; y < rozmiarY; y++) {
 					g.setColor(Color.gray);
-					if (bomby[x][y] == 1) {
-						g.setColor(Color.yellow);		//Podœwietlenie bomb na ¿ó³to
-					}
+//					if (bomby[x][y] == 1) {
+//						g.setColor(Color.yellow);		//Podœwietlenie bomb na ¿ó³to
+//					}
 //					else
 //						g.setColor(Color.GREEN);
 					
@@ -220,7 +220,7 @@ public class RamkaGry extends JFrame {
 						}
 					}
 					
-					// dodanie flagi
+	// Flagi
 					
 					if (oznaczone[x][y]==true) {
 						g.setColor(Color.DARK_GRAY);
@@ -231,28 +231,11 @@ public class RamkaGry extends JFrame {
 						g.setColor(Color.BLACK);
 						g.fillRect(x * 90+25, y * 90+70, 55, 5);
 						
-						
-//						Image img;
-//						img=Toolkit.getDefaultToolkit().getImage("D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\java\\com\\Saper\\ver3\\bomb.jpg");
-//						g.drawImage(img , 
-//					            0, 0, x * 90+35,  y * 90+15,
-//					            0, 0, 400, 400,
-//					            null); 
-	//					Toolkit.getDefaultToolkit().getImage
-						
 					}
 					podpowiedzi(x, y, g);					
 				}
 			}
 
-	//FLAGA
-			
-			
-//		g.setColor(Color.PINK);
-//		g.fillOval(flagaX+400, flagaY+820, 40, 60);
-//		if (oflagowany==true) {
-//			g.setColor(Color.blue);
-//		}
 			
 	// Czas
 			
@@ -262,6 +245,10 @@ public class RamkaGry extends JFrame {
 			
 			if (przegrana == false && wygrana == false ) {
 				sekunda = ustawionyCzas - ((new Date().getTime() - clock.getTime()) / 1000);
+//				sekunda=20 + (int)(new Date().getTime() - clock.getTime()) / 1000 - (int)(new Date().getTime() - clock.getTime()) / 1000;
+//				sekunda=clock.getTime()/1000;					// do skasowania potem
+//				sekunda=((new Date().getTime() - clock.getTime()) / 1000) - ((new Date().getTime() - clock.getTime()) / 1000) + sekunda;
+				
 			}
 
 			
@@ -272,6 +259,7 @@ public class RamkaGry extends JFrame {
 				g.setColor(Color.red);
 				g.setFont(new Font("Arial", Font.BOLD, 90));
 				g.drawString(Integer.toString((int) sekunda), zegarX + 20, zegarY + 70);
+				
 			}
 			if (sekunda==0) {
 				przegrana = true;		// Jesli czas sie skonczy, przgrywamy
