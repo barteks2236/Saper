@@ -4,9 +4,9 @@ import java.sql.*;
 
 public class Connect {
 	
-	private static String URL = "jdbc:postgresql:Ranking";
+	private static String URL = "jdbc:postgresql:RankingSaper.sql";
 	private static String user = "postgres";
-	private static String password = "SQLdata";
+	private static String password = "postgres";
 	
 	public static Connection connect() {
 		Connection connection = null;

@@ -10,18 +10,18 @@ public class MusicController {
 	
 	public static Clip bomb;
 	public static long bombTimePosition;
-	public static String pathBombSiren = "D:\\Eclipse Workspace\\Saper\\src\\main\\resources\\BombSiren.wav";
+	public static String pathBombSiren = "D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\resources\\BombSiren.wav";
 	
 	public static Clip easyMusic;
 	public static long easyMusicTimePosition;
-	public static String pathEasyMusic = "D:\\Eclipse Workspace\\Saper\\src\\main\\resources\\levelEasyMusic.wav";
+	public static String pathEasyMusic = "D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\resources\\levelEasyMusic.wav";
 	
 	public static Clip mediumMusic;
 	public static long mediumMusicTimePosition;
-	public static String pathMediumMusic = "D:\\Eclipse Workspace\\Saper\\src\\main\\resources\\levelMediumMusic.wav";
+	public static String pathMediumMusic = "D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\resources\\levelMediumMusic.wav";
 	
 	public static Clip explode;
-	public static String pathExplodeSound = "D:\\Eclipse Workspace\\Saper\\src\\main\\resources\\ExplodeSound.wav";
+	public static String pathExplodeSound = "D:\\Google Drive\\IT\\Java_CS_4\\Eclipse_workspace\\Saper\\src\\main\\resources\\ExplodeSound.wav";
 	
 	public static void music(String path) {
 		try {
